@@ -1,0 +1,22 @@
+{
+  "name": "smallapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fantasygao",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "koa-bodyparser": "^4.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-logger": "^2.0.1",
+    "koa-onerror": "^3.1.0",
+    "koa-router": "^7.1.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^6.0.2",
+    "opener": "^1.4.3"
+  }
+}
