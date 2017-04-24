@@ -20,13 +20,14 @@ app.convert(bodyparser());
 app.convert(logger());
 //static
 app.convert(koaStatic(__dirname+'/public'));
-
+//设置默认模板为ejs
 app.use(view(__dirname+'/views',{
 	extension: 'ejs'
 }));
 
+//发生默认err.ejs
 koaError(app,{template: 'views/err.ejs'});
-
+//router
 app.use(index.routes(),index.allowedMethods());
 app.use(other.routes(),other.allowedMethods());
 
