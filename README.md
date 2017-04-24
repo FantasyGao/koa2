@@ -1,7 +1,5 @@
-# koa2
-simple koa2 Framework's  struct
 
-#### Koa2 框架
+#### Koa2 简易框架
 
 ### Getting Start
 
