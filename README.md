@@ -67,6 +67,6 @@ https.createServer(options, app.callback()).listen(443,()=>{
 │   └── other.js
 └── views
     ├── err.ejs
-    └── index.jade
+    └── index.ejs
 
 ```
