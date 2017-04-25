@@ -24,6 +24,17 @@ app.use(view(__dirname+'/views',{
 	extension: 'ejs'
 });
 ```
+##### https的访问方式
+``` javascript
+let options = {
+	key: fs.readFileSync(__dirname+'/ssl/server.key'),
+    cert: fs.readFileSync(__dirname+'/ssl/server.crt')
+};
+https.createServer(options, app.callback()).listen(443,()=>{
+    console.log("https://127.0.0.1:443 is runing");
+	opener("https://127.0.0.1:443");
+});
+```
 
 ## 目录结构
 
@@ -48,6 +59,10 @@ app.use(view(__dirname+'/views',{
 │   ├── images
 │   ├── javascripts
 │   └── stylesheets
+├── ssl
+│   ├── server.cert
+│   └── server.key
+│
 ├── routes
 │   ├── index.js
 │   └── other.js
