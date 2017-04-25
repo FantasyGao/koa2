@@ -13,26 +13,26 @@ npm start
 #### koa的中间件方式 await+async
 ``` javascript
 app.use(async (ctx, next) => {
-  ...
-  await next();
-  ...
+    ...
+    await next();
+    ...
 });
 ```
 #### 默认模板 ejs
 ``` javascript
 app.use(view(__dirname+'/views',{
-	extension: 'ejs'
+    extension: 'ejs'
 });
 ```
 #### https的访问方式
 ``` javascript
 let options = {
-	key: fs.readFileSync(__dirname+'/ssl/server.key'),
+    key: fs.readFileSync(__dirname+'/ssl/server.key'),
     cert: fs.readFileSync(__dirname+'/ssl/server.crt')
 };
 https.createServer(options, app.callback()).listen(443,()=>{
     console.log("https://127.0.0.1:443 is runing");
-	opener("https://127.0.0.1:443");
+    opener("https://127.0.0.1:443");
 });
 ```
 
