@@ -4,10 +4,10 @@
 ### Getting Start
 
 ```
-git clone https://github.com/FantasyGao/koa2.git
-cd koa2
-npm install 
-npm start
+> git clone https://github.com/FantasyGao/koa2.git
+> cd koa2
+> npm install 
+> npm start
 ```
 ### 说明
 #### koa的中间件方式 await+async
