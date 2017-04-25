@@ -4,7 +4,11 @@ const view       = require('koa-views');
 const koaError   = require('koa-onerror');  
 const convert    = require('koa-convert');
 const koaStatic  = require('koa-static');
-const logger = require('koa-logger'); 
+const logger     = require('koa-logger');
+const http      = require('http');
+const https      = require('https');
+const koaSslify  = require('koa-sslify');
+const fs         = require('fs');
 
 const opener     = require('opener');
 
@@ -18,8 +22,12 @@ app.convert = x => app.use.call(app, convert(x));
 app.convert(bodyparser());
 //logger
 app.convert(logger());
+
 //static
 app.convert(koaStatic(__dirname+'/public'));
+
+//https
+app.use(koaSslify());
 //设置默认模板为ejs
 app.use(view(__dirname+'/views',{
 	extension: 'ejs'
@@ -36,7 +44,16 @@ app.on('error',(err, ctx) => {
   console.log('error occured:', err)
 });
 
-app.listen(3000,()=>{
+let options = {
+	key: fs.readFileSync(__dirname+'/ssl/server.key'),
+    cert: fs.readFileSync(__dirname+'/ssl/server.crt')
+};
+
+http.createServer(app.callback()).listen(3000,()=>{
     console.log("http://127.0.0.1:3000 is runing");
 	opener("http://127.0.0.1:3000");
+});
+https.createServer(options, app.callback()).listen(443,()=>{
+    console.log("https://127.0.0.1:443 is runing");
+	opener("https://127.0.0.1:443");
 });
