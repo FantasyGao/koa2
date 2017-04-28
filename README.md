@@ -25,6 +25,7 @@ app.use(view(__dirname+'/views',{
 });
 ```
 #### https的访问方式
+> ssl证书免费申请：（腾讯云）https://console.qcloud.com/ssl
 ``` javascript
 let options = {
     key: fs.readFileSync(__dirname+'/ssl/server.key'),
