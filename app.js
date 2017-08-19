@@ -8,6 +8,7 @@ const logger     = require('koa-logger');
 const http       = require('http');
 const https      = require('https');
 const fs         = require('fs');
+const koaSslify      = require('koa-sslify');
 
 const opener     = require('opener');
 
@@ -15,6 +16,7 @@ const app        = new Koa();
 
 const index      = require('./route/index.js');
 const other      = require('./route/other.js');
+const api        = require('./route/api.js');
 
 app.convert = x => app.use.call(app, convert(x));
 
@@ -24,6 +26,9 @@ app.convert(logger());
 
 //static
 app.convert(koaStatic(__dirname+'/public'));
+
+//强制转用https
+app.convert(koaSslify());
 
 //设置默认模板为ejs
 app.use(view(__dirname+'/views',{
@@ -35,6 +40,7 @@ koaError(app,{template: 'views/err.ejs'});
 //router
 app.use(index.routes(),index.allowedMethods());
 app.use(other.routes(),other.allowedMethods());
+app.use(api.routes(),api.allowedMethods());
 
 // error logger
 app.on('error',(err, ctx) => {
