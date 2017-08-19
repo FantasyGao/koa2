@@ -5,9 +5,8 @@ const koaError   = require('koa-onerror');
 const convert    = require('koa-convert');
 const koaStatic  = require('koa-static');
 const logger     = require('koa-logger');
-const http      = require('http');
+const http       = require('http');
 const https      = require('https');
-const koaSslify  = require('koa-sslify');
 const fs         = require('fs');
 
 const opener     = require('opener');
@@ -26,8 +25,6 @@ app.convert(logger());
 //static
 app.convert(koaStatic(__dirname+'/public'));
 
-//https
-app.use(koaSslify());
 //设置默认模板为ejs
 app.use(view(__dirname+'/views',{
 	extension: 'ejs'
@@ -55,5 +52,5 @@ http.createServer(app.callback()).listen(3000,()=>{
 });
 https.createServer(options, app.callback()).listen(443,()=>{
     console.log("https://127.0.0.1:443 is runing");
-	opener("https://127.0.0.1:443");
+	//opener("https://127.0.0.1:443");
 });
