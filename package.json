@@ -7,6 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "files": [
+    "app.js"
+  ],
   "author": "fantasygao",
   "license": "ISC",
   "dependencies": {
